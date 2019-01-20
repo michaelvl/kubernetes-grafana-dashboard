@@ -1,0 +1,40 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kubernetes-grafana-dashboard
+  namespace: {{ .Release.Namespace }}
+spec:
+  template:
+    spec:
+      serviceAccountName: kubernetes-grafana-dashboard
+      initContainers:
+      - name: create-dashboard
+        image: {{ .Values.grafanalib.image }}:{{ .Values.grafanalib.tag }}
+        command: ['generate-dashboard', '-o', '/dashboard/dashboard.json', '/dashboard-source/dashboard.py']
+        env:
+        - name: DASHBOARD_DATASOURCE
+          value: {{ .Values.dashboard.datasource }}
+        - name: DASHBOARD_TITLE
+          value: {{ .Values.dashboard.title }}
+        volumeMounts:
+        - name: dashboard-volume
+          mountPath: /dashboard
+        - name: dashboard-source
+          mountPath: /dashboard-source
+      - name: configmap-dashboard
+        image:  {{ .Values.kubectl.image }}:{{ .Values.kubectl.tag }}
+        args: ['create', 'configmap', 'dashboard', '--from-file', '/dashboard/dashboard.json']
+        volumeMounts:
+        - name: dashboard-volume
+          mountPath: /dashboard
+      containers:
+      - name: label-dashboard
+        image: {{ .Values.kubectl.image }}:{{ .Values.kubectl.tag }}
+        args: ['label', 'configmap', 'dashboard', '{{ .Values.dashboard.label}}=1']
+      restartPolicy: Never
+      volumes:
+      - name: dashboard-volume
+        emptyDir: {}
+      - name: dashboard-source
+        configMap:
+          name: dashboard-source

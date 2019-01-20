@@ -1,0 +1,12 @@
+dashboard:
+  datasource: 'prometheus'
+  title: 'Kubernetes Cluster Status'
+  label: grafana_dashboard
+
+kubectl:
+  image: michaelvl/kubectl
+  tag: v1.13.2
+
+grafanalib:
+  image: michaelvl/grafanalib
+  tag: git-89d80ba

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dashboard-source
+  namespace: {{ .Release.Namespace }}
+data:
+{{ (.Files.Glob "dashboards/*.py").AsConfig | indent 2 }}
