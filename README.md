@@ -31,4 +31,40 @@ while developing dashboards.  Simply re-apply the chart and you have the
 dashboard available in Grafana within seconds.
 
 Note that this requires the sidecar in Grafana for dynamic provisioning of
-dashboards are enabled.
+dashboards must enabled.
+
+## How It Works
+
+This is how it works:
+
+1. Helm deploys the chart, which includes a Configmap with the dashboard Python code
+
+2. The Configmap is mounted into a Kubernetes Job, which has three containers,
+two of which are init-containers.
+
+3. The first container converts the Python code into a .JSON file and stores it
+into a ephemeral volume shared between the containers.
+
+4. The second container creates a new Configmap from the .JSON file. This is
+done using kubectl and a serviceaccount created by Helm.  The serviceaccount is
+necessary since the default serviceaccounts may not allow the container to
+create resources.
+
+5. The third container labels the newly created Configmap such that it is picked
+up by the Grafana sidecar for dynamic dashboard deployment.
+
+## Drawbacks
+
+There are a few:
+
+- Initially it is easiler to create dashboards using Grafana directly. However,
+  once the basic gauges have been created, most of the dashboard development is
+  simply Python coding.  The example dashboard might be a good starting point.
+
+- Grafanalib does not support all features of Grafana and the Grafanalib
+  documentation is not voluminous.  However, since it is just Python code, it is
+  easy to read.  Reading the code and comparing to existing .JSON dashboards is
+  also a good approach to understanding Grafanalib.
+
+- Since Grafanalib is written in Python, the container image used for converting
+  from Python to .JSON is about 150MB.
