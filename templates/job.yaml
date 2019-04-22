@@ -10,7 +10,7 @@ spec:
       initContainers:
       - name: create-dashboard
         image: {{ .Values.grafanalib.image }}:{{ .Values.grafanalib.tag }}
-        command: ['generate-dashboard', '-o', '/dashboard/dashboard.json', '/dashboard-source/dashboard.py']
+        command: ['find', '/dashboards-source', '-name', '*.py', '-type', 'f', '-exec', 'sh', '-c', 'generate-dashboard -o "/dashboards/$(basename $0 .py).json" {}', '{}', ';']
         env:
         - name: DASHBOARD_DATASOURCE
           value: {{ .Values.dashboard.datasource }}
@@ -18,19 +18,28 @@ spec:
           value: {{ .Values.dashboard.title }}
         volumeMounts:
         - name: dashboard-volume
-          mountPath: /dashboard
+          mountPath: /dashboards
         - name: dashboard-source
-          mountPath: /dashboard-source
+          mountPath: /dashboards-source
       - name: configmap-dashboard
         image:  {{ .Values.kubectl.image }}:{{ .Values.kubectl.tag }}
-        args: ['create', 'configmap', 'dashboard', '--from-file', '/dashboard/dashboard.json']
+        command: ['find', '/dashboards', '-name', '*.json', '-type', 'f', '-exec', 'sh', '-c', 'kubectl create configmap "dashboard-$(basename $0 .json)" --from-file {}', '{}', ';']
         volumeMounts:
         - name: dashboard-volume
-          mountPath: /dashboard
+          mountPath: /dashboards
       containers:
       - name: label-dashboard
         image: {{ .Values.kubectl.image }}:{{ .Values.kubectl.tag }}
-        args: ['label', 'configmap', 'dashboard', '{{ .Values.dashboard.label}}=1']
+        command: ['find', '/dashboards', '-name', '*.json', '-type', 'f', '-exec', 'sh', '-c', 'kubectl label configmap "dashboard-$(basename $0 .json)" {{ .Values.dashboard.label}}=1', '{}', ';']
+        volumeMounts:
+        - name: dashboard-volume
+          mountPath: /dashboards
+      - name: debug
+        image: busybox
+        command: ['sleep', '10000']
+        volumeMounts:
+        - name: dashboard-volume
+          mountPath: /dashboards
       restartPolicy: Never
       volumes:
       - name: dashboard-volume
