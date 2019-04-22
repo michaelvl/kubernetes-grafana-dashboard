@@ -6,7 +6,7 @@ datasource = os.environ['DASHBOARD_DATASOURCE']
 
 refIds = list(string.ascii_uppercase)
 
-def percentage_gauge(title, exprs, sparkline=True, span=3):
+def percentage_gauge(title, exprs, sparkline=True, span=3, height=150):
     return SingleStat(
         title=title,
         dataSource=datasource,
@@ -17,21 +17,23 @@ def percentage_gauge(title, exprs, sparkline=True, span=3):
         thresholds = '80,90',
         valueName = 'current',
         gauge = Gauge(show=True, thresholdMarkers=True),
-        span = span
+        span = span,
+        height = height
     )
 
-def number(title, exprs, sparkline=True, span=3):
+def number(title, exprs, sparkline=True, span=2, height=100, format=NO_FORMAT):
     return SingleStat(
         title=title,
         dataSource=datasource,
         targets=[
             Target(expr=exprs[ii], refId=refIds[ii]) for ii in range(len(exprs))],
-        format = NO_FORMAT,
+        format = format,
         sparkline = SparkLine(show=sparkline),
-        span = span
+        span = span,
+        height = height
     )
 
-def capacity_graph(title, exprs):
+def capacity_graph(title, exprs, span=3):
     return Graph(
         title=title,
         dataSource=datasource,
@@ -53,7 +55,7 @@ def capacity_graph(title, exprs):
         #         ),
         #     ],
         # ),
-    span = 3
+        span = span
     )
 
 pod_usage = percentage_gauge('POD Usage',
@@ -93,20 +95,62 @@ node_filesystem_capacity = capacity_graph('Nodes Filesystem Capacity',
                                            ('sum(node_filesystem_size_bytes{nodename=~"$node"}) - sum(node_filesystem_free_bytes{nodename=~"$node"})', 'usage')])
 
 
+nodes_num = number('Nodes',
+                   [('sum(kube_node_info)')])
+
+nodes_num_avail = number('Nodes available',
+                   [('sum(kube_node_status_condition{condition="Ready", status="true"})')])
+
+nodes_num_failed = number('Nodes unavailable',
+                          [('sum(kube_node_spec_unschedulable)')])
+
+nodes_num_disk_press = number('Nodes w. disk pressure',
+                              [('sum(kube_node_status_condition{condition="DiskPressure", status="true"})')])
+
+nodes_num_mem_press = number('Nodes w. mem pressure',
+                             [('sum(kube_node_status_condition{condition="MemoryPressure", status="true"})')])
+
+
 pods_running = number('PODs Running',
-                      [('sum(kube_pod_status_phase{namespace=~"$namespace", phase="Running"})')], span=2)
+                      [('sum(kube_pod_status_phase{namespace=~"$namespace", phase="Running"})')])
 
 pods_pending = number('PODs Pending',
-                      [('sum(kube_pod_status_phase{namespace=~"$namespace", phase="Pending"})')], span=2)
+                      [('sum(kube_pod_status_phase{namespace=~"$namespace", phase="Pending"})')])
 
 pods_restarting = number('PODs Failed',
-                      [('sum(kube_pod_status_phase{namespace=~"$namespace", phase="Failed"})')], span=2)
+                      [('sum(kube_pod_status_phase{namespace=~"$namespace", phase="Failed"})')])
 
 pods_succeeded = number('PODs Succeeded',
-                      [('sum(kube_pod_status_phase{namespace=~"$namespace", phase="Succeeded"})')], span=2)
+                      [('sum(kube_pod_status_phase{namespace=~"$namespace", phase="Succeeded"})')])
 
 pods_unknown = number('PODs Status Unknown',
-                      [('sum(kube_pod_status_phase{namespace=~"$namespace", phase="Unknown"})')], span=2)
+                      [('sum(kube_pod_status_phase{namespace=~"$namespace", phase="Unknown"})')])
+
+
+container_num = number('Containers',
+                       [('sum(kube_pod_container_status_running{namespace=~"$namespace"})')])
+
+container_restarts = number('Container restarts [/hour]',
+                            [('sum(delta(kube_pod_container_status_restarts_total{namespace=~"$namespace"}[60m]))')])
+
+
+pv_num = number('Persistent volumes',
+                      [('sum(kube_persistentvolume_info)')])
+
+pv_avail = number('Unbound persistent volumes',
+                  [('sum(kube_persistentvolume_status_phase{phase="Available", namespace=~"$namespace"})')])
+
+pv_pending = number('Pending persistent volumes',
+                  [('sum(kube_persistentvolume_status_phase{phase="Pending", namespace=~"$namespace"})')])
+
+pv_bound = number('Bound persistent volumes',
+                  [('sum(kube_persistentvolume_status_phase{phase="Bound", namespace=~"$namespace"})')])
+
+pv_failed = number('Failed persistent volumes',
+                    [('sum(kube_persistentvolume_status_phase{phase="Failed", namespace=~"$namespace"})')])
+
+pv_bytes_req = number('Persistent volumes bytes requested',
+                      [('sum(kube_persistentvolumeclaim_resource_requests_storage_bytes{namespace=~"$namespace"})')], format=BYTES_FORMAT)
 
 
 dashboard = Dashboard(
@@ -125,9 +169,21 @@ dashboard = Dashboard(
                 pod_usage, cpu_requests, mem_requests, node_filesystem,
                 pod_capacity, cpu_capacity, mem_capacity, node_filesystem_capacity
         ]),
+        Row(title='Nodes', collapse=False,
+            panels = [
+                nodes_num, nodes_num_avail, nodes_num_disk_press, nodes_num_mem_press
+        ]),
         Row(title='PODs', collapse=False,
             panels = [
                 pods_running, pods_pending, pods_restarting, pods_succeeded, pods_unknown
+        ]),
+        Row(title='Containers', collapse=False,
+            panels = [
+                container_num, container_restarts
+        ]),
+        Row(title='Persistent volumes', collapse=False,
+            panels = [
+                pv_num, pv_avail, pv_pending, pv_bound, pv_failed, pv_bytes_req
         ]),
     ],
 ).auto_panel_ids()
