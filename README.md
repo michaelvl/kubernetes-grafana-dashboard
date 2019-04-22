@@ -22,6 +22,11 @@ Defining dashboards with code have a number of benefits:
 - Configurable dashboards based on e.g. chart values. The example dashboard
   illustrates this with a configurable dashboard title.
 
+- If you have variables in your dashboard that are based on label values
+  (e.g. typical for host and namespace names), saving the .JSON file may cause
+  these names to be included in the .JSON which is very undesirable for a
+  generic dashboard.
+
 See the dashboards folder for an example dashboard, and note that the Grafana
 .JSON files are not part of the chart and only exists temporarily while the
 Kubernetes job defined by this chart is executed.
