@@ -64,7 +64,7 @@ There are a few:
 
 - Initially it is easiler to create dashboards using Grafana directly. However,
   once the basic gauges have been created, most of the dashboard development is
-  simply Python coding.  The [example dashboard](dashboard/kubernetes-health.py)
+  simply Python coding.  The [example dashboard](dashboards/kubernetes-health.py)
   might be a good starting point.
 
 - Grafanalib does not support all features of Grafana and the Grafanalib
@@ -77,6 +77,6 @@ There are a few:
 
 ## Example Dashboard
 
-The [example dashboard](dashboard/kubernetes-health.py) is shown here in Grafana:
+The [example dashboard](dashboards/kubernetes-health.py) is shown here in Grafana:
 
 ![Example dashboard](dashboard.png)
