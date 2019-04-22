@@ -28,6 +28,7 @@ def number(title, exprs, sparkline=True, span=2, height=100, format=NO_FORMAT):
         targets=[
             Target(expr=exprs[ii], refId=refIds[ii]) for ii in range(len(exprs))],
         format = format,
+        valueName = 'current',
         sparkline = SparkLine(show=sparkline),
         span = span,
         height = height
