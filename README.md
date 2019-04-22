@@ -59,7 +59,8 @@ There are a few:
 
 - Initially it is easiler to create dashboards using Grafana directly. However,
   once the basic gauges have been created, most of the dashboard development is
-  simply Python coding.  The example dashboard might be a good starting point.
+  simply Python coding.  The [example dashboard](dashboard/kubernetes-health.py)
+  might be a good starting point.
 
 - Grafanalib does not support all features of Grafana and the Grafanalib
   documentation is not voluminous.  However, since it is just Python code, it is
@@ -68,3 +69,9 @@ There are a few:
 
 - Since Grafanalib is written in Python, the container image used for converting
   from Python to .JSON is about 150MB.
+
+## Example Dashboard
+
+The [example dashboard](dashboard/kubernetes-health.py) is shown here in Grafana:
+
+![Example dashboard](dashboard.png)
