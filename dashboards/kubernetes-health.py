@@ -21,17 +21,19 @@ def percentage_gauge(title, exprs, sparkline=True, span=3, height=150):
         height = height
     )
 
-def number(title, exprs, sparkline=True, span=2, height=100, format=NO_FORMAT):
+def number(title, exprs, sparkline=True, span=2, height=100, format=NO_FORMAT, thresholds="", colorValue=False):
     return SingleStat(
         title=title,
         dataSource=datasource,
         targets=[
             Target(expr=exprs[ii], refId=refIds[ii]) for ii in range(len(exprs))],
         format = format,
-        valueName = 'current',
+        colorValue = colorValue,
+        height = height,
         sparkline = SparkLine(show=sparkline),
         span = span,
-        height = height
+        thresholds = thresholds,
+        valueName = 'current'
     )
 
 def capacity_graph(title, exprs, span=3):
@@ -103,13 +105,15 @@ nodes_num_avail = number('Nodes available',
                    [('sum(kube_node_status_condition{condition="Ready", status="true"})')])
 
 nodes_num_failed = number('Nodes unavailable',
-                          [('sum(kube_node_spec_unschedulable)')])
+                          [('sum(kube_node_spec_unschedulable)')], thresholds="1,1", colorValue=True)
 
 nodes_num_disk_press = number('Nodes w. disk pressure',
-                              [('sum(kube_node_status_condition{condition="DiskPressure", status="true"})')])
+                              [('sum(kube_node_status_condition{condition="DiskPressure", status="true"})')],
+                              thresholds="1,2", colorValue=True)
 
 nodes_num_mem_press = number('Nodes w. mem pressure',
-                             [('sum(kube_node_status_condition{condition="MemoryPressure", status="true"})')])
+                             [('sum(kube_node_status_condition{condition="MemoryPressure", status="true"})')],
+                             thresholds="1,2", colorValue=True)
 
 
 pods_running = number('PODs Running',
@@ -119,20 +123,23 @@ pods_pending = number('PODs Pending',
                       [('sum(kube_pod_status_phase{namespace=~"$namespace", phase="Pending"})')])
 
 pods_restarting = number('PODs Failed',
-                      [('sum(kube_pod_status_phase{namespace=~"$namespace", phase="Failed"})')])
+                      [('sum(kube_pod_status_phase{namespace=~"$namespace", phase="Failed"})')],
+                         thresholds="1,2", colorValue=True)
 
 pods_succeeded = number('PODs Succeeded',
                       [('sum(kube_pod_status_phase{namespace=~"$namespace", phase="Succeeded"})')])
 
 pods_unknown = number('PODs Status Unknown',
-                      [('sum(kube_pod_status_phase{namespace=~"$namespace", phase="Unknown"})')])
+                      [('sum(kube_pod_status_phase{namespace=~"$namespace", phase="Unknown"})')],
+                      thresholds="1,2", colorValue=True)
 
 
 container_num = number('Containers',
                        [('sum(kube_pod_container_status_running{namespace=~"$namespace"})')])
 
 container_restarts = number('Container restarts [/hour]',
-                            [('sum(delta(kube_pod_container_status_restarts_total{namespace=~"$namespace"}[60m]))')])
+                            [('sum(delta(kube_pod_container_status_restarts_total{namespace=~"$namespace"}[60m]))')],
+                            thresholds="1,2", colorValue=True)
 
 
 pv_num = number('Persistent volumes',
@@ -148,10 +155,17 @@ pv_bound = number('Bound persistent volumes',
                   [('sum(kube_persistentvolume_status_phase{phase="Bound", namespace=~"$namespace"})')])
 
 pv_failed = number('Failed persistent volumes',
-                    [('sum(kube_persistentvolume_status_phase{phase="Failed", namespace=~"$namespace"})')])
+                    [('sum(kube_persistentvolume_status_phase{phase="Failed", namespace=~"$namespace"})')],
+                   thresholds="1,1", colorValue=True)
 
 pv_bytes_req = number('Persistent volumes bytes requested',
                       [('sum(kube_persistentvolumeclaim_resource_requests_storage_bytes{namespace=~"$namespace"})')], format=BYTES_FORMAT)
+
+
+targets_num = number('Metrics targets',
+                      [('count(up)')])
+targets_down = number('Metrics targets down',
+                      [('count(up==0)')])
 
 
 dashboard = Dashboard(
@@ -184,7 +198,11 @@ dashboard = Dashboard(
         ]),
         Row(title='Persistent volumes', collapse=False,
             panels = [
-                pv_num, pv_avail, pv_pending, pv_bound, pv_failed, pv_bytes_req
+                pv_num, pv_bound, pv_avail, pv_pending, pv_failed, pv_bytes_req
+        ]),
+        Row(title='Metrics', collapse=False,
+            panels = [
+                targets_num, targets_down
         ]),
     ],
 ).auto_panel_ids()
