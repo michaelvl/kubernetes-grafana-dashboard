@@ -30,7 +30,7 @@ spec:
       containers:
       - name: label-dashboard
         image: {{ .Values.kubectl.image }}:{{ .Values.kubectl.tag }}
-        command: ['find', '/dashboards', '-name', '*.json', '-type', 'f', '-exec', 'sh', '-c', 'kubectl label configmap "dashboard-$(basename $0 .json)" {{ .Values.dashboard.label}}=1', '{}', ';']
+        command: ['find', '/dashboards', '-name', '*.json', '-type', 'f', '-exec', 'sh', '-c', 'kubectl label configmap "dashboard-$(basename $0 .json)" {{ range $k,$v := .Values.dashboard.labels}} {{$k}}={{$v|quote}} {{end}}', '{}', ';']
         volumeMounts:
         - name: dashboard-volume
           mountPath: /dashboards

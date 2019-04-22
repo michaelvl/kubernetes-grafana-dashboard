@@ -1,7 +1,9 @@
 dashboard:
   datasource: 'prometheus'
   title: 'Kubernetes Cluster Status'
-  label: grafana_dashboard
+  labels:
+    grafana_dashboard: '1'
+    heritage: 'generated-from-code'
 
 kubectl:
   image: michaelvl/kubectl
