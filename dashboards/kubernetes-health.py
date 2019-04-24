@@ -4,16 +4,25 @@ from grafanalib.core import *
 
 datasource = os.environ['DASHBOARD_DATASOURCE']
 
+BROWN_RGBA = RGBA(189, 118, 31, 0.18)
+BROWN_RGB = RGB(193, 120, 31)
+RED_RGBA = RGBA(245, 54, 54, 0.18)
+RED_RGB = RGB(245, 54, 54)
+GREEN_RGBA = RGBA(50, 172, 45, 0.18)
+GREEN_RGB = RGB(50, 172, 45)
+GREY_RGBA = RGBA(216, 216, 216, 0.18)
+GREY_RGB = RGB(216, 216, 216)
+
 refIds = list(string.ascii_uppercase)
 
-def percentage_gauge(title, exprs, sparkline=True, span=3, height=150):
+def percentage_gauge(title, exprs, show_sparkline=True, span=3, height=150):
     return SingleStat(
         title=title,
         dataSource=datasource,
         targets=[
             Target(expr=exprs[ii], refId=refIds[ii]) for ii in range(len(exprs))],
         format = PERCENT_UNIT_FORMAT,
-        sparkline = SparkLine(show=sparkline),
+        sparkline = SparkLine(show=show_sparkline),
         thresholds = '80,90',
         valueName = 'current',
         gauge = Gauge(show=True, thresholdMarkers=True),
@@ -21,7 +30,12 @@ def percentage_gauge(title, exprs, sparkline=True, span=3, height=150):
         height = height
     )
 
-def number(title, exprs, sparkline=True, span=2, height=100, format=NO_FORMAT, thresholds="", colorValue=False):
+def number(title, exprs, show_sparkline=True, span=2, height=100, format=NO_FORMAT, thresholds="",
+           colorValue=False, sparkline=None):
+    if not sparkline and show_sparkline:
+        _sparkline = SparkLine(show=show_sparkline, fillColor=BLUE_RGBA, lineColor=BLUE_RGB)
+    else:
+        _sparkline = sparkline
     return SingleStat(
         title=title,
         dataSource=datasource,
@@ -30,7 +44,7 @@ def number(title, exprs, sparkline=True, span=2, height=100, format=NO_FORMAT, t
         format = format,
         colorValue = colorValue,
         height = height,
-        sparkline = SparkLine(show=sparkline),
+        sparkline = _sparkline,
         span = span,
         thresholds = thresholds,
         valueName = 'current'
@@ -101,8 +115,9 @@ node_filesystem_capacity = capacity_graph('Nodes Filesystem Capacity',
 nodes_num = number('Nodes',
                    [('sum(kube_node_info)')])
 
-nodes_num_avail = number('Nodes available',
-                   [('sum(kube_node_status_condition{condition="Ready", status="true"})')])
+nodes_num_unavail = number('Nodes available',
+                           [('sum(kube_node_info)-sum(kube_node_status_condition{condition="Ready", status="true"})')],
+                           thresholds="1,1", colorValue=True)
 
 nodes_num_failed = number('Nodes unavailable',
                           [('sum(kube_node_spec_unschedulable)')], thresholds="1,1", colorValue=True)
@@ -149,7 +164,8 @@ pv_avail = number('Unbound persistent volumes',
                   [('sum(kube_persistentvolume_status_phase{phase="Available", namespace=~"$namespace"})')])
 
 pv_pending = number('Pending persistent volumes',
-                  [('sum(kube_persistentvolume_status_phase{phase="Pending", namespace=~"$namespace"})')])
+                    [('sum(kube_persistentvolume_status_phase{phase="Pending", namespace=~"$namespace"})')],
+                    thresholds="1,2", colorValue=True)
 
 pv_bound = number('Bound persistent volumes',
                   [('sum(kube_persistentvolume_status_phase{phase="Bound", namespace=~"$namespace"})')])
@@ -159,13 +175,14 @@ pv_failed = number('Failed persistent volumes',
                    thresholds="1,1", colorValue=True)
 
 pv_bytes_req = number('Persistent volumes bytes requested',
-                      [('sum(kube_persistentvolumeclaim_resource_requests_storage_bytes{namespace=~"$namespace"})')], format=BYTES_FORMAT)
+                      [('sum(kube_persistentvolumeclaim_resource_requests_storage_bytes{namespace=~"$namespace"})')],
+                      format=BYTES_FORMAT)
 
 
 targets_num = number('Metrics targets',
                       [('count(up)')])
 targets_down = number('Metrics targets down',
-                      [('count(up==0)')])
+                      [('1-absent(up==0)')], thresholds="1,2", colorValue=True)
 
 
 dashboard = Dashboard(
@@ -186,11 +203,11 @@ dashboard = Dashboard(
         ]),
         Row(title='Nodes', collapse=False,
             panels = [
-                nodes_num, nodes_num_avail, nodes_num_disk_press, nodes_num_mem_press
+                nodes_num, nodes_num_unavail, nodes_num_disk_press, nodes_num_mem_press
         ]),
         Row(title='PODs', collapse=False,
             panels = [
-                pods_running, pods_pending, pods_restarting, pods_succeeded, pods_unknown
+                pods_running, pods_pending, pods_succeeded, pods_restarting, pods_unknown
         ]),
         Row(title='Containers', collapse=False,
             panels = [
