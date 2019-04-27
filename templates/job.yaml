@@ -10,7 +10,7 @@ spec:
       initContainers:
       - name: create-dashboard
         image: {{ .Values.grafanalib.image }}:{{ .Values.grafanalib.tag }}
-        command: ['find', '/dashboards-source', '-name', '*.py', '-type', 'f', '-exec', 'sh', '-c', 'generate-dashboard -o "/dashboards/$(basename $0 .py).json" {}', '{}', ';']
+        command: ['find', '/dashboards-source', '-name', 'dashboard-*.py', '-type', 'f', '-exec', 'sh', '-c', 'generate-dashboard -o "/dashboards/$(basename $0 .py).json" {}', '{}', ';']
         env:
         - name: DASHBOARD_DATASOURCE
           value: {{ .Values.dashboard.datasource }}
