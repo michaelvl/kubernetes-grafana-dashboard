@@ -7,8 +7,12 @@ dashboard:
 
 kubectl:
   image: michaelvl/kubectl
-  tag: v1.13.2
+  tag: 20190427-1451-7ddd0e5-v1.13.4
 
 grafanalib:
   image: michaelvl/grafanalib
-  tag: git-89d80ba
+  tag: git-20190309-1428-921f605
+
+fetchdashboard:
+  image: appropriate/curl
+  tag: latest
