@@ -228,7 +228,7 @@
           "targets": [
             {
               "datasource": "",
-              "expr": "envoy_server_days_until_first_cert_expiring{kubernetes_namespace=\"contour-ext\"}",
+              "expr": "min(envoy_server_days_until_first_cert_expiring{kubernetes_namespace=\"contour-ext\"})",
               "format": "time_series",
               "instant": false,
               "interval": "",
@@ -698,7 +698,7 @@
           "targets": [
             {
               "datasource": "",
-              "expr": "envoy_server_days_until_first_cert_expiring{kubernetes_namespace=\"contour-int\"}",
+              "expr": "min(envoy_server_days_until_first_cert_expiring{kubernetes_namespace=\"contour-int\"})",
               "format": "time_series",
               "instant": false,
               "interval": "",

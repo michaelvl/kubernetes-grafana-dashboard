@@ -77,6 +77,10 @@ There are a few:
 
 ## Example Dashboard
 
-The [example dashboard](dashboards/kubernetes-health.py) is shown here in Grafana:
+The [example Kubernetes health dashboard](dashboards/dashboard-kubernetes-health.py) is shown here:
 
-![Example dashboard](dashboard.png)
+![Example Kubernetes health dashboard](kubernetes-health-dashboard.png)
+
+The [example Envoy dashboard](dashboards/dashboard-envoy.py) is shown here:
+
+![Example Envoy dashboard](envoy-dashboard.png)

@@ -36,7 +36,7 @@ for ns,title in zip(namespaces, titles):
                                  [('sum(rate(envoy_http_downstream_rq_xx{{kubernetes_namespace="{}"}}[5m])) by (envoy_response_code_class)'.format(ns), '{{envoy_response_code_class}}xx')])
 
     envoy_days_cert_exp = number('Days next certificate expiry',
-                                 [('envoy_server_days_until_first_cert_expiring{{kubernetes_namespace="{}"}}'.format(ns))], thresholds="5,10", colors_reverse=True, colorValue=True, valueMaps=[{'op':'=', 'value':'null', 'text':'No Certs'},{'op':'=', 'value':'2147483647', 'text':'No Certs'}])
+                                 [('min(envoy_server_days_until_first_cert_expiring{{kubernetes_namespace="{}"}})'.format(ns))], thresholds="5,10", colors_reverse=True, colorValue=True, valueMaps=[{'op':'=', 'value':'null', 'text':'No Certs'},{'op':'=', 'value':'2147483647', 'text':'No Certs'}])
     
     row = Row(title=title+' Health', collapse=False,
               panels = [
