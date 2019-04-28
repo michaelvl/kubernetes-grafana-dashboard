@@ -32,7 +32,7 @@ def percentage_gauge(title, exprs, show_sparkline=True, span=3, height=150):
     )
 
 def number(title, exprs, show_sparkline=True, span=2, height=100, format=NO_FORMAT, thresholds="",
-           colors=None, colors_reverse=False, colorValue=False, sparkline=None):
+           colors=None, colors_reverse=False, colorValue=False, valueMaps=[], sparkline=None):
 
     if not colors:
         if colors_reverse:
@@ -52,6 +52,7 @@ def number(title, exprs, show_sparkline=True, span=2, height=100, format=NO_FORM
         colors = _colors,
         colorValue = colorValue,
         height = height,
+        valueMaps = valueMaps,
         sparkline = _sparkline,
         span = span,
         thresholds = thresholds,

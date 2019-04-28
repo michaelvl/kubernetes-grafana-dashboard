@@ -17,6 +17,10 @@ else:
 
 rows = []
 
+# https://www.envoyproxy.io/docs/envoy/latest/configuration/cluster_manager/cluster_stats
+# https://www.envoyproxy.io/docs/envoy/latest/configuration/http_conn_man/stats
+# https://www.envoyproxy.io/docs/envoy/latest/configuration/statistics
+
 for ns,title in zip(namespaces, titles):
     envoy_servers_live = number('Servers Live',
                                 [('sum(envoy_server_live{{kubernetes_namespace="{}"}})'.format(ns))], thresholds="1,2", colors_reverse=True, colorValue=True)
@@ -24,19 +28,25 @@ for ns,title in zip(namespaces, titles):
     envoy_servers_unhealthy = number('Servers Unhealthy',
                                      [('(sum(envoy_cluster_membership_healthy{{kubernetes_namespace="{0}"}})-sum(envoy_cluster_membership_total{{kubernetes_namespace="{0}"}}))'.format(ns))], thresholds="1,2", colorValue=True)
 
-
     envoy_conns = capacity_graph('Connections',
-                                 [('sum(envoy_http_downstream_cx_active{{kubernetes_namespace="{}"}}) by (envoy_http_conn_manager_prefix)'.format(ns), '{{envoy_http_conn_manager_prefix}}')], decimals=0)
+                                 [('sum(envoy_http_downstream_cx_active{{kubernetes_namespace="{}"}}) by (envoy_http_conn_manager_prefix)'.format(ns), '{{envoy_http_conn_manager_prefix}}'),
+                                 ('sum(envoy_server_parent_connections{{kubernetes_namespace="{}"}})'.format(ns), 'Parent connections')], decimals=0)
 
+    envoy_http_codes = capacity_graph('HTTP codes',
+                                 [('sum(rate(envoy_http_downstream_rq_xx{{kubernetes_namespace="{}"}}[5m])) by (envoy_response_code_class)'.format(ns), '{{envoy_response_code_class}}xx')])
+
+    envoy_days_cert_exp = number('Days next certificate expiry',
+                                 [('envoy_server_days_until_first_cert_expiring{{kubernetes_namespace="{}"}}'.format(ns))], thresholds="5,10", colors_reverse=True, colorValue=True, valueMaps=[{'op':'=', 'value':'null', 'text':'No Certs'},{'op':'=', 'value':'2147483647', 'text':'No Certs'}])
     
     row = Row(title=title+' Health', collapse=False,
               panels = [
-                  envoy_servers_live, envoy_servers_unhealthy
+                  envoy_servers_live, envoy_servers_unhealthy,
+                  envoy_days_cert_exp
               ])
     rows.append(row)
     row = Row(title=title+' Status', collapse=False,
               panels = [
-                  envoy_conns
+                  envoy_conns, envoy_http_codes
               ])
     rows.append(row)
 
