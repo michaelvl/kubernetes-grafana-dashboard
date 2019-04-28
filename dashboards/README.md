@@ -1,0 +1,1 @@
+**NOTE** The .json files in this directory are auto-generated from the .py files.
