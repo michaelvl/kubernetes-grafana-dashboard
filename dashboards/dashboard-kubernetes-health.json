@@ -30,7 +30,7 @@
           "editable": true,
           "format": "percentunit",
           "gauge": {
-            "maxValue": 100,
+            "maxValue": 1,
             "minValue": 0,
             "show": true,
             "thresholdLabels": false,
@@ -84,7 +84,7 @@
               "target": ""
             }
           ],
-          "thresholds": "80,90",
+          "thresholds": "0.8,0.9",
           "timeFrom": null,
           "title": "POD Usage",
           "transparent": false,
@@ -108,7 +108,7 @@
           "editable": true,
           "format": "percentunit",
           "gauge": {
-            "maxValue": 100,
+            "maxValue": 1,
             "minValue": 0,
             "show": true,
             "thresholdLabels": false,
@@ -162,7 +162,7 @@
               "target": ""
             }
           ],
-          "thresholds": "80,90",
+          "thresholds": "0.8,0.9",
           "timeFrom": null,
           "title": "CPU Requests",
           "transparent": false,
@@ -186,7 +186,7 @@
           "editable": true,
           "format": "percentunit",
           "gauge": {
-            "maxValue": 100,
+            "maxValue": 1,
             "minValue": 0,
             "show": true,
             "thresholdLabels": false,
@@ -240,7 +240,7 @@
               "target": ""
             }
           ],
-          "thresholds": "80,90",
+          "thresholds": "0.8,0.9",
           "timeFrom": null,
           "title": "Memory Requests",
           "transparent": false,
@@ -264,7 +264,7 @@
           "editable": true,
           "format": "percentunit",
           "gauge": {
-            "maxValue": 100,
+            "maxValue": 1,
             "minValue": 0,
             "show": true,
             "thresholdLabels": false,
@@ -318,7 +318,7 @@
               "target": ""
             }
           ],
-          "thresholds": "80,90",
+          "thresholds": "0.8,0.9",
           "timeFrom": null,
           "title": "Nodes Filesystem Usage",
           "transparent": false,
