@@ -134,7 +134,7 @@ dashboard = Dashboard(
         ]),
         Row(title='Nodes', collapse=False,
             panels = [
-                nodes_num, nodes_num_unavail, nodes_num_disk_press, nodes_num_mem_press
+                nodes_num, nodes_num_unavail, nodes_num_failed, nodes_num_disk_press, nodes_num_mem_press
         ]),
         Row(title='PODs', collapse=False,
             panels = [
