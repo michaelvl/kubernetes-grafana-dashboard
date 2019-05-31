@@ -46,11 +46,11 @@ node_filesystem_capacity = capacity_graph('Nodes Filesystem Capacity',
 nodes_num = number('Nodes',
                    [('sum(kube_node_info)')])
 
-nodes_num_unavail = number('Nodes available',
+nodes_num_unavail = number('Nodes unavailable',
                            [('sum(kube_node_info)-sum(kube_node_status_condition{condition="Ready", status="true"})')],
                            thresholds="1,1", colorValue=True)
 
-nodes_num_failed = number('Nodes unavailable',
+nodes_num_failed = number('Nodes unshedulable',
                           [('sum(kube_node_spec_unschedulable)')], thresholds="1,1", colorValue=True)
 
 nodes_num_disk_press = number('Nodes w. disk pressure',

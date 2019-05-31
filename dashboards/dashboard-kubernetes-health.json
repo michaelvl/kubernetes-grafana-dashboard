@@ -961,7 +961,7 @@
           ],
           "thresholds": "1,1",
           "timeFrom": null,
-          "title": "Nodes available",
+          "title": "Nodes unavailable",
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
