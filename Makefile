@@ -7,7 +7,7 @@ helm-install: validate
 	helm lint .
 	helm upgrade kubernetes-grafana-dashboard . --install
 
-.PHONY: remove
-remove:
+.PHONY: helm-remove
+helm-remove:
 	helm delete kubernetes-grafana-dashboard --purge
 	kubectl delete cm -l heritage=generated-from-code
