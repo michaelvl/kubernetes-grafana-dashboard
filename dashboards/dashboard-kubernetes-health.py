@@ -116,6 +116,14 @@ targets_down = number('Metrics targets down',
                       [('1-absent(up==0)')], thresholds="1,2", colorValue=True)
 
 
+cert_kubelet_expiry_min = number('Next Kubelet Certificate Expiry [days]',
+                                 [('(min(kubelet_certificate_manager_client_expiration_seconds) - time())/3600/24')],
+                                 thresholds='24,48', colorValue=True, colors_reverse=True, show_sparkline=False)
+
+cert_kubelet_expiry = capacity_graph('Kubelet Certificate Expiry [days]',
+                                     [('(kubelet_certificate_manager_client_expiration_seconds{instance=~\"$node\"} - time())/3600/24', '{{instance}}')])
+
+
 dashboard = Dashboard(
     title=os.environ['DASHBOARD_TITLE'],
     #editable=False,
@@ -134,7 +142,7 @@ dashboard = Dashboard(
         ]),
         Row(title='Nodes', collapse=False,
             panels = [
-                nodes_num, nodes_num_unavail, nodes_num_failed, nodes_num_disk_press, nodes_num_mem_press
+                nodes_num, nodes_num_unavail, nodes_num_failed, nodes_num_disk_press, nodes_num_mem_press, cert_kubelet_expiry_min
         ]),
         Row(title='PODs', collapse=False,
             panels = [
@@ -151,6 +159,10 @@ dashboard = Dashboard(
         Row(title='Metrics', collapse=False,
             panels = [
                 targets_num, targets_down
+        ]),
+        Row(title='Certificates', collapse=False,
+            panels = [
+                cert_kubelet_expiry
         ]),
     ],
 ).auto_panel_ids()

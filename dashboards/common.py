@@ -24,9 +24,9 @@ def percentage_gauge(title, exprs, show_sparkline=True, span=3, height=150):
             Target(expr=exprs[ii], refId=refIds[ii]) for ii in range(len(exprs))],
         format = PERCENT_UNIT_FORMAT,
         sparkline = SparkLine(show=show_sparkline),
-        thresholds = '80,90',
+        thresholds = '0.8,0.9',
         valueName = 'current',
-        gauge = Gauge(show=True, thresholdMarkers=True),
+        gauge = Gauge(show=True, thresholdMarkers=True, maxValue=1),
         span = span,
         height = height
     )
@@ -42,7 +42,7 @@ def number(title, exprs, show_sparkline=True, span=2, height=100, format=NO_FORM
     if not sparkline and show_sparkline:
         _sparkline = SparkLine(show=show_sparkline, fillColor=BLUE_RGBA, lineColor=BLUE_RGB)
     else:
-        _sparkline = sparkline
+        _sparkline = SparkLine(show=False)
     return SingleStat(
         title=title,
         dataSource=datasource,
