@@ -84,3 +84,7 @@ The [example Kubernetes health dashboard](dashboards/dashboard-kubernetes-health
 The [example Envoy dashboard](dashboards/dashboard-envoy.py) is shown here:
 
 ![Example Envoy dashboard](envoy-dashboard.png)
+
+## Links
+
+[Kube State Metrics](https://github.com/kubernetes/kube-state-metrics/tree/master/docs)

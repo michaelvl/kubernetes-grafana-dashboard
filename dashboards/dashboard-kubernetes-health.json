@@ -3,11 +3,13 @@
   "annotations": {
     "list": []
   },
+  "description": "",
   "editable": true,
   "gnetId": null,
   "hideControls": false,
   "id": null,
   "links": [],
+  "panels": [],
   "refresh": "10s",
   "rows": [
     {
@@ -28,6 +30,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "0.8,0.9"
+              }
+            }
+          },
           "format": "percentunit",
           "gauge": {
             "maxValue": 1,
@@ -36,6 +47,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 150,
           "hideTimeOverride": false,
           "id": 1,
@@ -53,6 +65,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -62,6 +75,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 3,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -71,9 +85,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_pod_info{node=~\"$node\",kubernetes_namespace=~\"$namespace\"}) / sum(kube_node_status_allocatable_pods{node=~\".*\",kubernetes_namespace=~\"$namespace\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -86,7 +101,9 @@
           ],
           "thresholds": "0.8,0.9",
           "timeFrom": null,
+          "timeShift": null,
           "title": "POD Usage",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -106,6 +123,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "0.8,0.9"
+              }
+            }
+          },
           "format": "percentunit",
           "gauge": {
             "maxValue": 1,
@@ -114,6 +140,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 150,
           "hideTimeOverride": false,
           "id": 2,
@@ -131,6 +158,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -140,6 +168,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 3,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -149,9 +178,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_pod_container_resource_requests_cpu_cores{node=~\"$node\",kubernetes_namespace=~\"$namespace\"}) / sum(kube_node_status_allocatable_cpu_cores{node=~\"$node\",kubernetes_namespace=~\"$namespace\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -164,7 +194,9 @@
           ],
           "thresholds": "0.8,0.9",
           "timeFrom": null,
+          "timeShift": null,
           "title": "CPU Requests",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -184,6 +216,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "0.8,0.9"
+              }
+            }
+          },
           "format": "percentunit",
           "gauge": {
             "maxValue": 1,
@@ -192,6 +233,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 150,
           "hideTimeOverride": false,
           "id": 3,
@@ -209,6 +251,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -218,6 +261,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 3,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -227,9 +271,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_pod_container_resource_requests_memory_bytes{node=~\"$node\",kubernetes_namespace=~\"$namespace\"}) / sum(kube_node_status_allocatable_memory_bytes{node=~\"$node\",kubernetes_namespace=~\"$namespace\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -242,7 +287,9 @@
           ],
           "thresholds": "0.8,0.9",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Memory Requests",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -262,6 +309,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "0.8,0.9"
+              }
+            }
+          },
           "format": "percentunit",
           "gauge": {
             "maxValue": 1,
@@ -270,6 +326,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 150,
           "hideTimeOverride": false,
           "id": 4,
@@ -287,6 +344,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -296,6 +354,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 3,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -305,9 +364,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "(sum(node_filesystem_size_bytes{nodename=~\"$node\"}) - sum(node_filesystem_free_bytes{nodename=~\"$node\"})) / sum(node_filesystem_size_bytes{nodename=~\"$node\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -320,7 +380,9 @@
           ],
           "thresholds": "0.8,0.9",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Nodes Filesystem Usage",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -330,10 +392,19 @@
         {
           "aliasColors": {},
           "bars": false,
+          "cacheTimeout": null,
           "datasource": "prometheus",
           "description": null,
           "editable": true,
           "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            }
+          },
           "fill": 1,
           "grid": {
             "threshold1": null,
@@ -341,7 +412,11 @@
             "threshold2": null,
             "threshold2Color": "rgba(234, 112, 112, 0.22)"
           },
+          "gridPos": null,
+          "height": null,
+          "hideTimeOverride": false,
           "id": 5,
+          "interval": null,
           "isNew": true,
           "legend": {
             "alignAsTable": false,
@@ -362,22 +437,30 @@
           "lines": true,
           "linewidth": 2,
           "links": [],
+          "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
+          "options": {
+            "alertThreshold": true,
+            "dataLinks": []
+          },
           "percentage": false,
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
           "repeat": null,
+          "repeatDirection": null,
           "seriesOverrides": [],
           "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_node_status_allocatable_pods{node=~\"$node\",kubernetes_namespace=~\"$namespace\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -388,9 +471,10 @@
               "target": ""
             },
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_node_status_capacity_pods{node=~\"$node\",kubernetes_namespace=~\"$namespace\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -401,9 +485,10 @@
               "target": ""
             },
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_pod_info{node=~\"$node\",kubernetes_namespace=~\"$namespace\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -414,6 +499,7 @@
               "target": ""
             }
           ],
+          "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
           "title": "Cluster POD Capacity",
@@ -423,10 +509,14 @@
             "sort": 0,
             "value_type": "cumulative"
           },
+          "transformations": [],
           "transparent": false,
           "type": "graph",
           "xaxis": {
-            "show": true
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
           },
           "yaxes": [
             {
@@ -435,7 +525,7 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": 0,
+              "min": null,
               "show": true
             },
             {
@@ -444,18 +534,31 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": 0,
+              "min": null,
               "show": true
             }
-          ]
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": 0
+          }
         },
         {
           "aliasColors": {},
           "bars": false,
+          "cacheTimeout": null,
           "datasource": "prometheus",
           "description": null,
           "editable": true,
           "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            }
+          },
           "fill": 1,
           "grid": {
             "threshold1": null,
@@ -463,7 +566,11 @@
             "threshold2": null,
             "threshold2Color": "rgba(234, 112, 112, 0.22)"
           },
+          "gridPos": null,
+          "height": null,
+          "hideTimeOverride": false,
           "id": 6,
+          "interval": null,
           "isNew": true,
           "legend": {
             "alignAsTable": false,
@@ -484,22 +591,30 @@
           "lines": true,
           "linewidth": 2,
           "links": [],
+          "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
+          "options": {
+            "alertThreshold": true,
+            "dataLinks": []
+          },
           "percentage": false,
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
           "repeat": null,
+          "repeatDirection": null,
           "seriesOverrides": [],
           "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_node_status_capacity_cpu_cores{node=~\"$node\",kubernetes_namespace=~\"$namespace\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -510,9 +625,10 @@
               "target": ""
             },
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_node_status_allocatable_cpu_cores{node=~\"$node\",kubernetes_namespace=~\"$namespace\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -523,9 +639,10 @@
               "target": ""
             },
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_pod_container_resource_requests_cpu_cores{node=~\"$node\",kubernetes_namespace=~\"$namespace\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -536,6 +653,7 @@
               "target": ""
             }
           ],
+          "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
           "title": "Cluster CPU Requests",
@@ -545,10 +663,14 @@
             "sort": 0,
             "value_type": "cumulative"
           },
+          "transformations": [],
           "transparent": false,
           "type": "graph",
           "xaxis": {
-            "show": true
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
           },
           "yaxes": [
             {
@@ -557,7 +679,7 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": 0,
+              "min": null,
               "show": true
             },
             {
@@ -566,18 +688,31 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": 0,
+              "min": null,
               "show": true
             }
-          ]
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": 0
+          }
         },
         {
           "aliasColors": {},
           "bars": false,
+          "cacheTimeout": null,
           "datasource": "prometheus",
           "description": null,
           "editable": true,
           "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            }
+          },
           "fill": 1,
           "grid": {
             "threshold1": null,
@@ -585,7 +720,11 @@
             "threshold2": null,
             "threshold2Color": "rgba(234, 112, 112, 0.22)"
           },
+          "gridPos": null,
+          "height": null,
+          "hideTimeOverride": false,
           "id": 7,
+          "interval": null,
           "isNew": true,
           "legend": {
             "alignAsTable": false,
@@ -606,22 +745,30 @@
           "lines": true,
           "linewidth": 2,
           "links": [],
+          "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
+          "options": {
+            "alertThreshold": true,
+            "dataLinks": []
+          },
           "percentage": false,
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
           "repeat": null,
+          "repeatDirection": null,
           "seriesOverrides": [],
           "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_node_status_allocatable_memory_bytes{node=~\"$node\",kubernetes_namespace=~\"$namespace\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -632,9 +779,10 @@
               "target": ""
             },
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_node_status_capacity_memory_bytes{node=~\"$node\",kubernetes_namespace=~\"$namespace\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -645,9 +793,10 @@
               "target": ""
             },
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_pod_container_resource_requests_memory_bytes{node=~\"$node\",kubernetes_namespace=~\"$namespace\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -658,6 +807,7 @@
               "target": ""
             }
           ],
+          "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
           "title": "Cluster Memory Requests",
@@ -667,10 +817,14 @@
             "sort": 0,
             "value_type": "cumulative"
           },
+          "transformations": [],
           "transparent": false,
           "type": "graph",
           "xaxis": {
-            "show": true
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
           },
           "yaxes": [
             {
@@ -679,7 +833,7 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": 0,
+              "min": null,
               "show": true
             },
             {
@@ -688,18 +842,31 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": 0,
+              "min": null,
               "show": true
             }
-          ]
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": 0
+          }
         },
         {
           "aliasColors": {},
           "bars": false,
+          "cacheTimeout": null,
           "datasource": "prometheus",
           "description": null,
           "editable": true,
           "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            }
+          },
           "fill": 1,
           "grid": {
             "threshold1": null,
@@ -707,7 +874,11 @@
             "threshold2": null,
             "threshold2Color": "rgba(234, 112, 112, 0.22)"
           },
+          "gridPos": null,
+          "height": null,
+          "hideTimeOverride": false,
           "id": 8,
+          "interval": null,
           "isNew": true,
           "legend": {
             "alignAsTable": false,
@@ -728,22 +899,30 @@
           "lines": true,
           "linewidth": 2,
           "links": [],
+          "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
+          "options": {
+            "alertThreshold": true,
+            "dataLinks": []
+          },
           "percentage": false,
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
           "repeat": null,
+          "repeatDirection": null,
           "seriesOverrides": [],
           "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(node_filesystem_size_bytes{nodename=~\"$node\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -754,9 +933,10 @@
               "target": ""
             },
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(node_filesystem_size_bytes{nodename=~\"$node\"}) - sum(node_filesystem_free_bytes{nodename=~\"$node\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -767,6 +947,7 @@
               "target": ""
             }
           ],
+          "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
           "title": "Nodes Filesystem Capacity",
@@ -776,10 +957,14 @@
             "sort": 0,
             "value_type": "cumulative"
           },
+          "transformations": [],
           "transparent": false,
           "type": "graph",
           "xaxis": {
-            "show": true
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
           },
           "yaxes": [
             {
@@ -788,7 +973,7 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": 0,
+              "min": null,
               "show": true
             },
             {
@@ -797,10 +982,14 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": 0,
+              "min": null,
               "show": true
             }
-          ]
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": 0
+          }
         }
       ],
       "repeat": null,
@@ -825,6 +1014,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": ""
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -833,6 +1031,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 9,
@@ -850,6 +1049,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -859,6 +1059,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -868,9 +1069,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_node_info)",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -883,7 +1085,9 @@
           ],
           "thresholds": "",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Nodes",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -903,6 +1107,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "1,1"
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -911,6 +1124,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 10,
@@ -928,6 +1142,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -937,6 +1152,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -946,9 +1162,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_node_info)-sum(kube_node_status_condition{condition=\"Ready\", status=\"true\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -961,7 +1178,9 @@
           ],
           "thresholds": "1,1",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Nodes unavailable",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -981,6 +1200,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "1,1"
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -989,6 +1217,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 11,
@@ -1006,6 +1235,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -1015,6 +1245,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -1024,9 +1255,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_node_spec_unschedulable)",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -1039,7 +1271,9 @@
           ],
           "thresholds": "1,1",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Nodes unshedulable",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -1059,6 +1293,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "1,2"
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -1067,6 +1310,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 12,
@@ -1084,6 +1328,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -1093,6 +1338,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -1102,9 +1348,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_node_status_condition{condition=\"DiskPressure\", status=\"true\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -1117,7 +1364,9 @@
           ],
           "thresholds": "1,2",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Nodes w. disk pressure",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -1137,6 +1386,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "1,2"
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -1145,6 +1403,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 13,
@@ -1162,6 +1421,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -1171,6 +1431,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -1180,9 +1441,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_node_status_condition{condition=\"MemoryPressure\", status=\"true\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -1195,7 +1457,9 @@
           ],
           "thresholds": "1,2",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Nodes w. mem pressure",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -1215,6 +1479,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "24,48"
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -1223,6 +1496,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 14,
@@ -1240,6 +1514,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -1249,6 +1524,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -1258,9 +1534,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "(min(kubelet_certificate_manager_client_expiration_seconds) - time())/3600/24",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -1273,7 +1550,9 @@
           ],
           "thresholds": "24,48",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Next Kubelet Certificate Expiry [days]",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -1303,6 +1582,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": ""
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -1311,6 +1599,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 15,
@@ -1328,6 +1617,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -1337,6 +1627,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -1346,9 +1637,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_pod_status_phase{namespace=~\"$namespace\", phase=\"Running\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -1361,7 +1653,9 @@
           ],
           "thresholds": "",
           "timeFrom": null,
+          "timeShift": null,
           "title": "PODs Running",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -1381,6 +1675,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": ""
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -1389,6 +1692,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 16,
@@ -1406,6 +1710,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -1415,6 +1720,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -1424,9 +1730,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_pod_status_phase{namespace=~\"$namespace\", phase=\"Pending\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -1439,7 +1746,9 @@
           ],
           "thresholds": "",
           "timeFrom": null,
+          "timeShift": null,
           "title": "PODs Pending",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -1459,6 +1768,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": ""
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -1467,6 +1785,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 17,
@@ -1484,6 +1803,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -1493,6 +1813,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -1502,9 +1823,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_pod_status_phase{namespace=~\"$namespace\", phase=\"Succeeded\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -1517,7 +1839,9 @@
           ],
           "thresholds": "",
           "timeFrom": null,
+          "timeShift": null,
           "title": "PODs Succeeded",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -1537,6 +1861,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "1,2"
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -1545,6 +1878,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 18,
@@ -1562,6 +1896,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -1571,6 +1906,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -1580,9 +1916,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_pod_status_phase{namespace=~\"$namespace\", phase=\"Failed\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -1595,7 +1932,9 @@
           ],
           "thresholds": "1,2",
           "timeFrom": null,
+          "timeShift": null,
           "title": "PODs Failed",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -1615,6 +1954,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "1,2"
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -1623,6 +1971,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 19,
@@ -1640,6 +1989,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -1649,6 +1999,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -1658,9 +2009,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_pod_status_phase{namespace=~\"$namespace\", phase=\"Unknown\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -1673,7 +2025,9 @@
           ],
           "thresholds": "1,2",
           "timeFrom": null,
+          "timeShift": null,
           "title": "PODs Status Unknown",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -1703,6 +2057,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": ""
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -1711,6 +2074,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 20,
@@ -1728,6 +2092,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -1737,6 +2102,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -1746,9 +2112,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_pod_container_status_running{namespace=~\"$namespace\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -1761,7 +2128,9 @@
           ],
           "thresholds": "",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Containers",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -1781,6 +2150,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "1,2"
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -1789,6 +2167,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 21,
@@ -1806,6 +2185,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -1815,6 +2195,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -1824,9 +2205,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(delta(kube_pod_container_status_restarts_total{namespace=~\"$namespace\"}[60m]))",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -1839,7 +2221,9 @@
           ],
           "thresholds": "1,2",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Container restarts [/hour]",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -1869,6 +2253,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": ""
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -1877,6 +2270,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 22,
@@ -1894,6 +2288,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -1903,6 +2298,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -1912,9 +2308,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_persistentvolume_info)",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -1927,7 +2324,9 @@
           ],
           "thresholds": "",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Persistent volumes",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -1947,6 +2346,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": ""
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -1955,6 +2363,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 23,
@@ -1972,6 +2381,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -1981,6 +2391,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -1990,9 +2401,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_persistentvolume_status_phase{phase=\"Bound\", namespace=~\"$namespace\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -2005,7 +2417,9 @@
           ],
           "thresholds": "",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Bound persistent volumes",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -2025,6 +2439,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": ""
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -2033,6 +2456,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 24,
@@ -2050,6 +2474,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -2059,6 +2484,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -2068,9 +2494,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_persistentvolume_status_phase{phase=\"Available\", namespace=~\"$namespace\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -2083,7 +2510,9 @@
           ],
           "thresholds": "",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Unbound persistent volumes",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -2103,6 +2532,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "1,2"
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -2111,6 +2549,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 25,
@@ -2128,6 +2567,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -2137,6 +2577,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -2146,9 +2587,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_persistentvolume_status_phase{phase=\"Pending\", namespace=~\"$namespace\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -2161,7 +2603,9 @@
           ],
           "thresholds": "1,2",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Pending persistent volumes",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -2181,6 +2625,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "1,1"
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -2189,6 +2642,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 26,
@@ -2206,6 +2660,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -2215,6 +2670,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -2224,9 +2680,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_persistentvolume_status_phase{phase=\"Failed\", namespace=~\"$namespace\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -2239,7 +2696,9 @@
           ],
           "thresholds": "1,1",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Failed persistent volumes",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -2259,6 +2718,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": ""
+              }
+            }
+          },
           "format": "bytes",
           "gauge": {
             "maxValue": 100,
@@ -2267,6 +2735,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 27,
@@ -2284,6 +2753,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -2293,6 +2763,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -2302,9 +2773,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(kube_persistentvolumeclaim_resource_requests_storage_bytes{namespace=~\"$namespace\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -2317,7 +2789,9 @@
           ],
           "thresholds": "",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Persistent volumes bytes requested",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -2335,178 +2809,21 @@
       "height": "250px",
       "panels": [
         {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(50, 172, 45, 0.97)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(245, 54, 54, 0.9)"
-          ],
-          "datasource": "prometheus",
-          "decimals": null,
-          "description": null,
-          "editable": true,
-          "format": "none",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": false,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
-          },
-          "height": 100,
-          "hideTimeOverride": false,
-          "id": 28,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "minSpan": null,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [],
-          "repeat": null,
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": true
-          },
-          "targets": [
-            {
-              "datasource": "",
-              "expr": "count(up)",
-              "format": "time_series",
-              "instant": false,
-              "interval": "",
-              "intervalFactor": 2,
-              "legendFormat": "",
-              "metric": "",
-              "refId": "A",
-              "step": 10,
-              "target": ""
-            }
-          ],
-          "thresholds": "",
-          "timeFrom": null,
-          "title": "Metrics targets",
-          "transparent": false,
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [],
-          "valueName": "current"
-        },
-        {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": true,
-          "colors": [
-            "rgba(50, 172, 45, 0.97)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(245, 54, 54, 0.9)"
-          ],
-          "datasource": "prometheus",
-          "decimals": null,
-          "description": null,
-          "editable": true,
-          "format": "none",
-          "gauge": {
-            "maxValue": 100,
-            "minValue": 0,
-            "show": false,
-            "thresholdLabels": false,
-            "thresholdMarkers": true
-          },
-          "height": 100,
-          "hideTimeOverride": false,
-          "id": 29,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "minSpan": null,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [],
-          "repeat": null,
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": true
-          },
-          "targets": [
-            {
-              "datasource": "",
-              "expr": "1-absent(up==0)",
-              "format": "time_series",
-              "instant": false,
-              "interval": "",
-              "intervalFactor": 2,
-              "legendFormat": "",
-              "metric": "",
-              "refId": "A",
-              "step": 10,
-              "target": ""
-            }
-          ],
-          "thresholds": "1,2",
-          "timeFrom": null,
-          "title": "Metrics targets down",
-          "transparent": false,
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [],
-          "valueName": "current"
-        }
-      ],
-      "repeat": null,
-      "showTitle": true,
-      "title": "Metrics"
-    },
-    {
-      "collapse": false,
-      "editable": true,
-      "height": "250px",
-      "panels": [
-        {
           "aliasColors": {},
           "bars": false,
+          "cacheTimeout": null,
           "datasource": "prometheus",
           "description": null,
           "editable": true,
           "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            }
+          },
           "fill": 1,
           "grid": {
             "threshold1": null,
@@ -2514,7 +2831,11 @@
             "threshold2": null,
             "threshold2Color": "rgba(234, 112, 112, 0.22)"
           },
-          "id": 30,
+          "gridPos": null,
+          "height": null,
+          "hideTimeOverride": false,
+          "id": 28,
+          "interval": null,
           "isNew": true,
           "legend": {
             "alignAsTable": false,
@@ -2535,22 +2856,362 @@
           "lines": true,
           "linewidth": 2,
           "links": [],
+          "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
+          "options": {
+            "alertThreshold": true,
+            "dataLinks": []
+          },
           "percentage": false,
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
           "repeat": null,
+          "repeatDirection": null,
           "seriesOverrides": [],
           "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
+              "expr": "sum(rate(apiserver_request_count[5m])) by (resource)",
+              "format": "time_series",
+              "hide": false,
+              "instant": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "{{resource}}",
+              "metric": "",
+              "refId": "A",
+              "step": 10,
+              "target": ""
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "API Server Request Rate",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "transformations": [],
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": null,
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": 0
+          }
+        }
+      ],
+      "repeat": null,
+      "showTitle": true,
+      "title": "API Server"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "prometheus",
+          "decimals": null,
+          "description": null,
+          "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": ""
+              }
+            }
+          },
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": null,
+          "height": 100,
+          "hideTimeOverride": false,
+          "id": 29,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "maxPerRow": null,
+          "minSpan": null,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [],
+          "repeat": null,
+          "repeatDirection": null,
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "targets": [
+            {
+              "datasource": null,
+              "expr": "count(up)",
+              "format": "time_series",
+              "hide": false,
+              "instant": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "",
+              "metric": "",
+              "refId": "A",
+              "step": 10,
+              "target": ""
+            }
+          ],
+          "thresholds": "",
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Metrics targets",
+          "transformations": [],
+          "transparent": false,
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "prometheus",
+          "decimals": null,
+          "description": null,
+          "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "1,2"
+              }
+            }
+          },
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": null,
+          "height": 100,
+          "hideTimeOverride": false,
+          "id": 30,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "maxPerRow": null,
+          "minSpan": null,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [],
+          "repeat": null,
+          "repeatDirection": null,
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "targets": [
+            {
+              "datasource": null,
+              "expr": "1-absent(up==0)",
+              "format": "time_series",
+              "hide": false,
+              "instant": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "",
+              "metric": "",
+              "refId": "A",
+              "step": 10,
+              "target": ""
+            }
+          ],
+          "thresholds": "1,2",
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Metrics targets down",
+          "transformations": [],
+          "transparent": false,
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [],
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "showTitle": true,
+      "title": "Metrics"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "cacheTimeout": null,
+          "datasource": "prometheus",
+          "description": null,
+          "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            }
+          },
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "gridPos": null,
+          "height": null,
+          "hideTimeOverride": false,
+          "id": 31,
+          "interval": null,
+          "isNew": true,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": null,
+            "sortDesc": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "maxDataPoints": 100,
+          "maxPerRow": null,
+          "minSpan": null,
+          "nullPointMode": "connected",
+          "options": {
+            "alertThreshold": true,
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": null,
+          "seriesOverrides": [],
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "datasource": null,
               "expr": "(kubelet_certificate_manager_client_expiration_seconds{instance=~\"$node\"} - time())/3600/24",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -2561,6 +3222,7 @@
               "target": ""
             }
           ],
+          "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
           "title": "Kubelet Certificate Expiry [days]",
@@ -2570,10 +3232,14 @@
             "sort": 0,
             "value_type": "cumulative"
           },
+          "transformations": [],
           "transparent": false,
           "type": "graph",
           "xaxis": {
-            "show": true
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
           },
           "yaxes": [
             {
@@ -2582,7 +3248,7 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": 0,
+              "min": null,
               "show": true
             },
             {
@@ -2591,10 +3257,14 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": 0,
+              "min": null,
               "show": true
             }
-          ]
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": 0
+          }
         }
       ],
       "repeat": null,
@@ -2610,7 +3280,11 @@
     "list": [
       {
         "allValue": ".*",
+        "auto": false,
+        "auto_count": 30,
+        "auto_min": "10s",
         "current": {
+          "selected": false,
           "tags": [],
           "text": null,
           "value": null
@@ -2633,7 +3307,11 @@
       },
       {
         "allValue": ".*",
+        "auto": false,
+        "auto_count": 30,
+        "auto_min": "10s",
         "current": {
+          "selected": false,
           "tags": [],
           "text": null,
           "value": null
@@ -2661,6 +3339,7 @@
     "to": "now"
   },
   "timepicker": {
+    "hidden": false,
     "refresh_intervals": [
       "5s",
       "10s",

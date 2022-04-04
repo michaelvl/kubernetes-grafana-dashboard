@@ -16,6 +16,10 @@ mem_requests = percentage_gauge('Memory Requests',
                                 ['sum(kube_pod_container_resource_requests_memory_bytes{node=~"$node",kubernetes_namespace=~"$namespace"}) / sum(kube_node_status_allocatable_memory_bytes{node=~"$node",kubernetes_namespace=~"$namespace"})'])
 
 
+apiserver_request_rates = capacity_graph('API Server Request Rate',
+                              [('sum(rate(apiserver_request_count[5m])) by (resource)', '{{resource}}')])
+
+
 # pv_usage = percentage_gauge('Volume Usage',
 #                             ['(sum(node_filesystem_size{nodename=~"$node"}) - sum(node_filesystem_free{nodename=~"$node"})) / sum(node_filesystem_size{nodename=~"$node"})'])
 
@@ -155,6 +159,10 @@ dashboard = Dashboard(
         Row(title='Persistent volumes', collapse=False,
             panels = [
                 pv_num, pv_bound, pv_avail, pv_pending, pv_failed, pv_bytes_req
+        ]),
+        Row(title='API Server', collapse=False,
+            panels = [
+                apiserver_request_rates
         ]),
         Row(title='Metrics', collapse=False,
             panels = [

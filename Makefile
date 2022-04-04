@@ -1,6 +1,9 @@
+IMAGE=michaelvl/grafanalib
+
 .PHONY: validate
 validate:
-	docker run --rm -it -v ${PWD}/dashboards:/hosttmp --name grafanalib -e DASHBOARD_DATASOURCE="prometheus" -e DASHBOARD_TITLE="Kubernetes Health Dashboard" michaelvl/grafanalib:git-20190309-1428-921f605 find /hosttmp/ -name 'dashboard-*.py' -type f -printf '%p\n' -exec sh -c "generate-dashboard -o /hosttmp/\$$(basename {} .py).json {}" {} \;
+	#docker run --rm -it -v ${PWD}/dashboards:/hosttmp --name grafanalib -e DASHBOARD_DATASOURCE="prometheus" -e DASHBOARD_TITLE="Kubernetes Health Dashboard" michaelvl/grafanalib:git-20190309-1428-921f605 find /hosttmp/ -name 'dashboard-*.py' -type f -printf '%p\n' -exec sh -c "generate-dashboard -o /hosttmp/\$$(basename {} .py).json {}" {} \;
+	docker run --rm -it -v ${PWD}/dashboards:/hosttmp --name grafanalib -e DASHBOARD_DATASOURCE="prometheus" -e DASHBOARD_TITLE="Kubernetes Health Dashboard" ${IMAGE} find /hosttmp/ -name 'dashboard-*.py' -type f -printf '%p\n' -exec sh -c "generate-dashboard -o /hosttmp/\$$(basename {} .py).json {}" {} \;
 
 .PHONY: helm-install
 helm-install: validate

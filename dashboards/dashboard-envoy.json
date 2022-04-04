@@ -3,11 +3,13 @@
   "annotations": {
     "list": []
   },
+  "description": "",
   "editable": true,
   "gnetId": null,
   "hideControls": false,
   "id": null,
   "links": [],
+  "panels": [],
   "refresh": "10s",
   "rows": [
     {
@@ -28,6 +30,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "1,2"
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -36,6 +47,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 1,
@@ -53,6 +65,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -62,6 +75,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -71,9 +85,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(envoy_server_live{kubernetes_namespace=\"contour-ext\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -86,7 +101,9 @@
           ],
           "thresholds": "1,2",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Servers Live",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -106,6 +123,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "1,2"
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -114,6 +140,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 2,
@@ -131,6 +158,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -140,6 +168,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -149,9 +178,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "(sum(envoy_cluster_membership_healthy{kubernetes_namespace=\"contour-ext\"})-sum(envoy_cluster_membership_total{kubernetes_namespace=\"contour-ext\"}))",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -164,7 +194,9 @@
           ],
           "thresholds": "1,2",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Servers Unhealthy",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -184,6 +216,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "5,10"
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -192,6 +233,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 3,
@@ -209,6 +251,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -218,6 +261,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -227,9 +271,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "min(envoy_server_days_until_first_cert_expiring{kubernetes_namespace=\"contour-ext\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -242,7 +287,9 @@
           ],
           "thresholds": "5,10",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Days next certificate expiry",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -273,10 +320,19 @@
         {
           "aliasColors": {},
           "bars": false,
+          "cacheTimeout": null,
           "datasource": "prometheus",
           "description": null,
           "editable": true,
           "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            }
+          },
           "fill": 1,
           "grid": {
             "threshold1": null,
@@ -284,7 +340,11 @@
             "threshold2": null,
             "threshold2Color": "rgba(234, 112, 112, 0.22)"
           },
+          "gridPos": null,
+          "height": null,
+          "hideTimeOverride": false,
           "id": 4,
+          "interval": null,
           "isNew": true,
           "legend": {
             "alignAsTable": false,
@@ -305,22 +365,30 @@
           "lines": true,
           "linewidth": 2,
           "links": [],
+          "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
+          "options": {
+            "alertThreshold": true,
+            "dataLinks": []
+          },
           "percentage": false,
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
           "repeat": null,
+          "repeatDirection": null,
           "seriesOverrides": [],
           "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(envoy_http_downstream_cx_active{kubernetes_namespace=\"contour-ext\"}) by (envoy_http_conn_manager_prefix)",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -331,9 +399,10 @@
               "target": ""
             },
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(envoy_server_parent_connections{kubernetes_namespace=\"contour-ext\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -344,6 +413,7 @@
               "target": ""
             }
           ],
+          "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
           "title": "Connections",
@@ -353,10 +423,14 @@
             "sort": 0,
             "value_type": "cumulative"
           },
+          "transformations": [],
           "transparent": false,
           "type": "graph",
           "xaxis": {
-            "show": true
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
           },
           "yaxes": [
             {
@@ -365,7 +439,7 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": 0,
+              "min": null,
               "show": true
             },
             {
@@ -374,18 +448,31 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": 0,
+              "min": null,
               "show": true
             }
-          ]
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": 0
+          }
         },
         {
           "aliasColors": {},
           "bars": false,
+          "cacheTimeout": null,
           "datasource": "prometheus",
           "description": null,
           "editable": true,
           "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            }
+          },
           "fill": 1,
           "grid": {
             "threshold1": null,
@@ -393,7 +480,11 @@
             "threshold2": null,
             "threshold2Color": "rgba(234, 112, 112, 0.22)"
           },
+          "gridPos": null,
+          "height": null,
+          "hideTimeOverride": false,
           "id": 5,
+          "interval": null,
           "isNew": true,
           "legend": {
             "alignAsTable": false,
@@ -414,22 +505,30 @@
           "lines": true,
           "linewidth": 2,
           "links": [],
+          "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
+          "options": {
+            "alertThreshold": true,
+            "dataLinks": []
+          },
           "percentage": false,
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
           "repeat": null,
+          "repeatDirection": null,
           "seriesOverrides": [],
           "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(rate(envoy_http_downstream_rq_xx{kubernetes_namespace=\"contour-ext\"}[5m])) by (envoy_response_code_class)",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -440,6 +539,7 @@
               "target": ""
             }
           ],
+          "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
           "title": "HTTP codes",
@@ -449,10 +549,14 @@
             "sort": 0,
             "value_type": "cumulative"
           },
+          "transformations": [],
           "transparent": false,
           "type": "graph",
           "xaxis": {
-            "show": true
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
           },
           "yaxes": [
             {
@@ -461,7 +565,7 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": 0,
+              "min": null,
               "show": true
             },
             {
@@ -470,10 +574,14 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": 0,
+              "min": null,
               "show": true
             }
-          ]
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": 0
+          }
         }
       ],
       "repeat": null,
@@ -498,6 +606,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "1,2"
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -506,6 +623,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 6,
@@ -523,6 +641,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -532,6 +651,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -541,9 +661,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(envoy_server_live{kubernetes_namespace=\"contour-int\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -556,7 +677,9 @@
           ],
           "thresholds": "1,2",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Servers Live",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -576,6 +699,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "1,2"
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -584,6 +716,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 7,
@@ -601,6 +734,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -610,6 +744,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -619,9 +754,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "(sum(envoy_cluster_membership_healthy{kubernetes_namespace=\"contour-int\"})-sum(envoy_cluster_membership_total{kubernetes_namespace=\"contour-int\"}))",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -634,7 +770,9 @@
           ],
           "thresholds": "1,2",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Servers Unhealthy",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -654,6 +792,15 @@
           "decimals": null,
           "description": null,
           "editable": true,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": "5,10"
+              }
+            }
+          },
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -662,6 +809,7 @@
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
+          "gridPos": null,
           "height": 100,
           "hideTimeOverride": false,
           "id": 8,
@@ -679,6 +827,7 @@
             }
           ],
           "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
           "nullText": null,
@@ -688,6 +837,7 @@
           "prefixFontSize": "50%",
           "rangeMaps": [],
           "repeat": null,
+          "repeatDirection": null,
           "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -697,9 +847,10 @@
           },
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "min(envoy_server_days_until_first_cert_expiring{kubernetes_namespace=\"contour-int\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -712,7 +863,9 @@
           ],
           "thresholds": "5,10",
           "timeFrom": null,
+          "timeShift": null,
           "title": "Days next certificate expiry",
+          "transformations": [],
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -743,10 +896,19 @@
         {
           "aliasColors": {},
           "bars": false,
+          "cacheTimeout": null,
           "datasource": "prometheus",
           "description": null,
           "editable": true,
           "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            }
+          },
           "fill": 1,
           "grid": {
             "threshold1": null,
@@ -754,7 +916,11 @@
             "threshold2": null,
             "threshold2Color": "rgba(234, 112, 112, 0.22)"
           },
+          "gridPos": null,
+          "height": null,
+          "hideTimeOverride": false,
           "id": 9,
+          "interval": null,
           "isNew": true,
           "legend": {
             "alignAsTable": false,
@@ -775,22 +941,30 @@
           "lines": true,
           "linewidth": 2,
           "links": [],
+          "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
+          "options": {
+            "alertThreshold": true,
+            "dataLinks": []
+          },
           "percentage": false,
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
           "repeat": null,
+          "repeatDirection": null,
           "seriesOverrides": [],
           "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(envoy_http_downstream_cx_active{kubernetes_namespace=\"contour-int\"}) by (envoy_http_conn_manager_prefix)",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -801,9 +975,10 @@
               "target": ""
             },
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(envoy_server_parent_connections{kubernetes_namespace=\"contour-int\"})",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -814,6 +989,7 @@
               "target": ""
             }
           ],
+          "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
           "title": "Connections",
@@ -823,10 +999,14 @@
             "sort": 0,
             "value_type": "cumulative"
           },
+          "transformations": [],
           "transparent": false,
           "type": "graph",
           "xaxis": {
-            "show": true
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
           },
           "yaxes": [
             {
@@ -835,7 +1015,7 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": 0,
+              "min": null,
               "show": true
             },
             {
@@ -844,18 +1024,31 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": 0,
+              "min": null,
               "show": true
             }
-          ]
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": 0
+          }
         },
         {
           "aliasColors": {},
           "bars": false,
+          "cacheTimeout": null,
           "datasource": "prometheus",
           "description": null,
           "editable": true,
           "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            }
+          },
           "fill": 1,
           "grid": {
             "threshold1": null,
@@ -863,7 +1056,11 @@
             "threshold2": null,
             "threshold2Color": "rgba(234, 112, 112, 0.22)"
           },
+          "gridPos": null,
+          "height": null,
+          "hideTimeOverride": false,
           "id": 10,
+          "interval": null,
           "isNew": true,
           "legend": {
             "alignAsTable": false,
@@ -884,22 +1081,30 @@
           "lines": true,
           "linewidth": 2,
           "links": [],
+          "maxDataPoints": 100,
+          "maxPerRow": null,
           "minSpan": null,
           "nullPointMode": "connected",
+          "options": {
+            "alertThreshold": true,
+            "dataLinks": []
+          },
           "percentage": false,
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
           "repeat": null,
+          "repeatDirection": null,
           "seriesOverrides": [],
           "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "datasource": "",
+              "datasource": null,
               "expr": "sum(rate(envoy_http_downstream_rq_xx{kubernetes_namespace=\"contour-int\"}[5m])) by (envoy_response_code_class)",
               "format": "time_series",
+              "hide": false,
               "instant": false,
               "interval": "",
               "intervalFactor": 2,
@@ -910,6 +1115,7 @@
               "target": ""
             }
           ],
+          "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
           "title": "HTTP codes",
@@ -919,10 +1125,14 @@
             "sort": 0,
             "value_type": "cumulative"
           },
+          "transformations": [],
           "transparent": false,
           "type": "graph",
           "xaxis": {
-            "show": true
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
           },
           "yaxes": [
             {
@@ -931,7 +1141,7 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": 0,
+              "min": null,
               "show": true
             },
             {
@@ -940,10 +1150,14 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": 0,
+              "min": null,
               "show": true
             }
-          ]
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": 0
+          }
         }
       ],
       "repeat": null,
@@ -959,7 +1173,11 @@
     "list": [
       {
         "allValue": ".*",
+        "auto": false,
+        "auto_count": 30,
+        "auto_min": "10s",
         "current": {
+          "selected": false,
           "tags": [],
           "text": null,
           "value": null
@@ -982,7 +1200,11 @@
       },
       {
         "allValue": ".*",
+        "auto": false,
+        "auto_count": 30,
+        "auto_min": "10s",
         "current": {
+          "selected": false,
           "tags": [],
           "text": null,
           "value": null
@@ -1010,6 +1232,7 @@
     "to": "now"
   },
   "timepicker": {
+    "hidden": false,
     "refresh_intervals": [
       "5s",
       "10s",
