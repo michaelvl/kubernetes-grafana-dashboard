@@ -20,10 +20,10 @@ pods_restarting = number('PODs Failed',
                          thresholds="1,2", colorValue=True)
 
 mem_requests = capacity_graph('Memory Requests Ratio',
-                              [('sum(container_memory_working_set_bytes{container!="",namespace=~"$namespace"}) by (container,pod) / sum(kube_pod_container_resource_requests{resource="memory",exported_namespace=~"$namespace"}) by (container,pod)', '{{container}}')])
+                              [('container_memory_working_set_bytes{container!="",namespace=~"$namespace"} / on (container,pod) group_left sum(kube_pod_container_resource_requests{resource="memory",exported_namespace=~"$namespace"}) by (container,pod)', '{{container}}')])
 
 mem_limits = capacity_graph('Memory Limits Ratio',
-                            [('sum(container_memory_working_set_bytes{container!="",namespace=~"$namespace"}) by (container,pod) / sum(kube_pod_container_resource_limits{resource="memory",exported_namespace=~"$namespace"}) by (container,pod)', '{{container}}')])
+                            [('container_memory_working_set_bytes{container!="",namespace=~"$namespace"} / on (container,pod) group_left sum(kube_pod_container_resource_limits{resource="memory",exported_namespace=~"$namespace"}) by (container,pod)', '{{container}}')])
 
 cpu_capacity = capacity_graph('Cluster CPU Requests',
                               [('sum(kube_node_status_capacity{resource="cpu",exported_node=~"$node"})', 'allocatable'),
