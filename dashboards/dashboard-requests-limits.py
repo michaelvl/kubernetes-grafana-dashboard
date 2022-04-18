@@ -16,8 +16,11 @@ pods_pending = number('PODs Pending',
                       [('sum(kube_pod_status_phase{exported_namespace=~"$namespace", phase="Pending"})')])
 
 pods_restarting = number('PODs Failed',
-                      [('sum(kube_pod_status_phase{exported_namespace=~"$namespace", phase="Failed"})')],
+                         [('sum(kube_pod_status_phase{exported_namespace=~"$namespace", phase="Failed"})')],
                          thresholds="1,2", colorValue=True)
+
+container_mem_usage = capacity_graph('Container Memory Usage',
+                                     [('container_memory_working_set_bytes{container!="",namespace=~"$namespace"}', '{{container}}')])
 
 mem_requests = capacity_graph('Memory Requests Ratio',
                               [('container_memory_working_set_bytes{container!="",namespace=~"$namespace"} / on (container,pod) group_left sum(kube_pod_container_resource_requests{resource="memory",exported_namespace=~"$namespace"}) by (container,pod)', '{{container}}')])
@@ -54,7 +57,7 @@ dashboard = Dashboard(
         ]),
         Row(title='POD Resources', collapse=False,
             panels = [
-                mem_requests, mem_limits
+                mem_requests, mem_limits, container_mem_usage
         ]),
     ],
 ).auto_panel_ids()
