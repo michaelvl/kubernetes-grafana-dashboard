@@ -9,12 +9,12 @@ from common import *
 pod_usage = percentage_gauge('POD Usage',
                              ['sum(kube_pod_info{node=~"$node",kubernetes_namespace=~"$namespace"}) / sum(kube_node_status_allocatable_pods{node=~".*",kubernetes_namespace=~"$namespace"})'])
 
-cpu_requests = percentage_gauge('CPU Requests',
-                                ['sum(kube_pod_container_resource_requests_cpu_cores{node=~"$node",kubernetes_namespace=~"$namespace"}) / sum(kube_node_status_allocatable_cpu_cores{node=~"$node",kubernetes_namespace=~"$namespace"})'])
+cpu_requests = percentage_gauge('Cluster CPU Requests',
+                                ['sum(kube_pod_container_resource_requests{resource="cpu",exported_node=~"$node"}) / sum(kube_node_status_capacity{resource="cpu",exported_node=~"$node"})'])
 
-mem_requests = percentage_gauge('Memory Requests',
-                                ['sum(kube_pod_container_resource_requests_memory_bytes{node=~"$node",kubernetes_namespace=~"$namespace"}) / sum(kube_node_status_allocatable_memory_bytes{node=~"$node",kubernetes_namespace=~"$namespace"})'])
 
+mem_requests = percentage_gauge('Cluster Memory Requests',
+                                ['sum(kube_pod_container_resource_requests{resource="memory",exported_node=~"$node"}) / sum(kube_node_status_allocatable{resource="memory",exported_node=~"$node"})'])
 
 apiserver_request_rates = capacity_graph('API Server Request Rate',
                               [('sum(rate(apiserver_request_total[5m])) by (resource)', '{{resource}}')])
@@ -33,14 +33,14 @@ pod_capacity = capacity_graph('Cluster POD Capacity',
                                ('sum(kube_pod_info{node=~\"$node\",kubernetes_namespace=~"$namespace"})', 'current')])
 
 cpu_capacity = capacity_graph('Cluster CPU Requests',
-                              [('sum(kube_node_status_capacity_cpu_cores{node=~"$node",kubernetes_namespace=~"$namespace"})', 'allocatable'),
-                               ('sum(kube_node_status_allocatable_cpu_cores{node=~"$node",kubernetes_namespace=~"$namespace"})', 'capacity'),
-                               ('sum(kube_pod_container_resource_requests_cpu_cores{node=~"$node",kubernetes_namespace=~"$namespace"})', 'current')])
+                              [('sum(kube_node_status_capacity{resource="cpu",exported_node=~"$node"})', 'allocatable'),
+                               ('sum(kube_node_status_allocatable{resource="cpu",exported_node=~"$node"})', 'capacity'),
+                               ('sum(kube_pod_container_resource_requests{resource="cpu",exported_node=~"$node"})', 'current')])
 
 mem_capacity = capacity_graph('Cluster Memory Requests',
-                              [('sum(kube_node_status_allocatable_memory_bytes{node=~"$node",kubernetes_namespace=~"$namespace"})', 'allocatable'),
-                               ('sum(kube_node_status_capacity_memory_bytes{node=~"$node",kubernetes_namespace=~"$namespace"})', 'capacity'),
-                               ('sum(kube_pod_container_resource_requests_memory_bytes{node=~"$node",kubernetes_namespace=~"$namespace"})', 'current')])
+                              [('sum(kube_node_status_allocatable{resource="memory",exported_node=~"$node"})', 'allocatable'),
+                               ('sum(kube_node_status_capacity{resource="memory",exported_node=~"$node"})', 'capacity'),
+                               ('sum(kube_pod_container_resource_requests{resource="memory",exported_node=~"$node"})', 'current')])
 
 node_filesystem_capacity = capacity_graph('Nodes Filesystem Capacity',
                                           [('sum(node_filesystem_size_bytes{nodename=~"$node"})', 'available'),

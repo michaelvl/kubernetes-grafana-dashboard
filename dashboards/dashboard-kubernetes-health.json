@@ -179,7 +179,7 @@
           "targets": [
             {
               "datasource": null,
-              "expr": "sum(kube_pod_container_resource_requests_cpu_cores{node=~\"$node\",kubernetes_namespace=~\"$namespace\"}) / sum(kube_node_status_allocatable_cpu_cores{node=~\"$node\",kubernetes_namespace=~\"$namespace\"})",
+              "expr": "sum(kube_pod_container_resource_requests{resource=\"cpu\",exported_node=~\"$node\"}) / sum(kube_node_status_capacity{resource=\"cpu\",exported_node=~\"$node\"})",
               "format": "time_series",
               "hide": false,
               "instant": false,
@@ -195,7 +195,7 @@
           "thresholds": "0.8,0.9",
           "timeFrom": null,
           "timeShift": null,
-          "title": "CPU Requests",
+          "title": "Cluster CPU Requests",
           "transformations": [],
           "transparent": false,
           "type": "singlestat",
@@ -272,7 +272,7 @@
           "targets": [
             {
               "datasource": null,
-              "expr": "sum(kube_pod_container_resource_requests_memory_bytes{node=~\"$node\",kubernetes_namespace=~\"$namespace\"}) / sum(kube_node_status_allocatable_memory_bytes{node=~\"$node\",kubernetes_namespace=~\"$namespace\"})",
+              "expr": "sum(kube_pod_container_resource_requests{resource=\"memory\",exported_node=~\"$node\"}) / sum(kube_node_status_allocatable{resource=\"memory\",exported_node=~\"$node\"})",
               "format": "time_series",
               "hide": false,
               "instant": false,
@@ -288,7 +288,7 @@
           "thresholds": "0.8,0.9",
           "timeFrom": null,
           "timeShift": null,
-          "title": "Memory Requests",
+          "title": "Cluster Memory Requests",
           "transformations": [],
           "transparent": false,
           "type": "singlestat",
@@ -612,7 +612,7 @@
           "targets": [
             {
               "datasource": null,
-              "expr": "sum(kube_node_status_capacity_cpu_cores{node=~\"$node\",kubernetes_namespace=~\"$namespace\"})",
+              "expr": "sum(kube_node_status_capacity{resource=\"cpu\",exported_node=~\"$node\"})",
               "format": "time_series",
               "hide": false,
               "instant": false,
@@ -626,7 +626,7 @@
             },
             {
               "datasource": null,
-              "expr": "sum(kube_node_status_allocatable_cpu_cores{node=~\"$node\",kubernetes_namespace=~\"$namespace\"})",
+              "expr": "sum(kube_node_status_allocatable{resource=\"cpu\",exported_node=~\"$node\"})",
               "format": "time_series",
               "hide": false,
               "instant": false,
@@ -640,7 +640,7 @@
             },
             {
               "datasource": null,
-              "expr": "sum(kube_pod_container_resource_requests_cpu_cores{node=~\"$node\",kubernetes_namespace=~\"$namespace\"})",
+              "expr": "sum(kube_pod_container_resource_requests{resource=\"cpu\",exported_node=~\"$node\"})",
               "format": "time_series",
               "hide": false,
               "instant": false,
@@ -766,7 +766,7 @@
           "targets": [
             {
               "datasource": null,
-              "expr": "sum(kube_node_status_allocatable_memory_bytes{node=~\"$node\",kubernetes_namespace=~\"$namespace\"})",
+              "expr": "sum(kube_node_status_allocatable{resource=\"memory\",exported_node=~\"$node\"})",
               "format": "time_series",
               "hide": false,
               "instant": false,
@@ -780,7 +780,7 @@
             },
             {
               "datasource": null,
-              "expr": "sum(kube_node_status_capacity_memory_bytes{node=~\"$node\",kubernetes_namespace=~\"$namespace\"})",
+              "expr": "sum(kube_node_status_capacity{resource=\"memory\",exported_node=~\"$node\"})",
               "format": "time_series",
               "hide": false,
               "instant": false,
@@ -794,7 +794,7 @@
             },
             {
               "datasource": null,
-              "expr": "sum(kube_pod_container_resource_requests_memory_bytes{node=~\"$node\",kubernetes_namespace=~\"$namespace\"})",
+              "expr": "sum(kube_pod_container_resource_requests{resource=\"memory\",exported_node=~\"$node\"})",
               "format": "time_series",
               "hide": false,
               "instant": false,
