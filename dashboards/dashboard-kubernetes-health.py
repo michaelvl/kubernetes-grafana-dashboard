@@ -17,7 +17,7 @@ mem_requests = percentage_gauge('Memory Requests',
 
 
 apiserver_request_rates = capacity_graph('API Server Request Rate',
-                              [('sum(rate(apiserver_request_count[5m])) by (resource)', '{{resource}}')])
+                              [('sum(rate(apiserver_request_total[5m])) by (resource)', '{{resource}}')])
 
 
 # pv_usage = percentage_gauge('Volume Usage',

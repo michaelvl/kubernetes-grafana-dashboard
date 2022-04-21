@@ -2877,7 +2877,7 @@
           "targets": [
             {
               "datasource": null,
-              "expr": "sum(rate(apiserver_request_count[5m])) by (resource)",
+              "expr": "sum(rate(apiserver_request_total[5m])) by (resource)",
               "format": "time_series",
               "hide": false,
               "instant": false,
