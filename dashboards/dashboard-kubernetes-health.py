@@ -7,7 +7,7 @@ from common import *
 
 
 pod_usage = percentage_gauge('POD Usage',
-                             ['sum(kube_pod_info{node=~"$node",kubernetes_namespace=~"$namespace"}) / sum(kube_node_status_allocatable_pods{node=~".*",kubernetes_namespace=~"$namespace"})'])
+                             ['sum(kube_pod_info{node=~"$node",kubernetes_namespace=~"$namespace"}) / sum(kube_node_status_allocatable{resource="pods",node=~".*",kubernetes_namespace=~"$namespace"})'])
 
 cpu_requests = percentage_gauge('Cluster CPU Requests',
                                 ['sum(kube_pod_container_resource_requests{resource="cpu",exported_node=~"$node"}) / sum(kube_node_status_capacity{resource="cpu",exported_node=~"$node"})'])
